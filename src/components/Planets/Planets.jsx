@@ -1,47 +1,60 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import Container from "../Container/Container";
 import Grid from "../Grid/Grid";
 import getPlanets from "../../services/planets-service";
 
 const Planets = () => {
+  // variables de estado planets
+  const [planets, setPlanets] = useState([]);
+  //varaible de estado para el next
+
+  const [nextPlanets, setNextPlanets] = useState("");
+
   useEffect(() => {
     const fetchPlanets = async () => {
       const data = await getPlanets();
-      console.log(data);
+      setPlanets(data.results);
+      setNextPlanets(data.next);
     };
     fetchPlanets();
   }, []);
+
   return (
-    <Container title={"Planet"}>
+    <Container title={"Planets"}>
       <Grid columns={3} rows={"auto"} gap={"15px"}>
-        <Card>
-          <h2>title</h2>
-          <div className="horizontal-group">
-            <p>Rotation: 12</p>
-            <p>Orbital: 44</p>
-            <p>Diameter:40</p>
-          </div>
-          <div className="featured-group">
-            <div className="featured-item">
-              Rotation: 12
-              <p>details</p>
+        {planets.map((planet) => (
+          <Card key={planet.name}>
+            <h2>{planet.name}</h2>
+            <div className="horizontal-group">
+              <p>Rotation: {planet.rotation_period}</p>
+              <p>Orbital: {planet.orbital_period}</p>
+              <p>Diameter:{planet.diameter}</p>
             </div>
-            <div className="featured-item">
-              Orbital: 44
-              <p>details</p>
+            <div className="featured-group">
+              <div className="featured-item">
+                Climate
+                <p>{planet.climate}</p>
+              </div>
+              <div className="featured-item">
+                Gravity
+                <p>{planet.gravity}</p>
+              </div>
+              <div className="featured-item">
+                Terrain
+                <p>{planet.terrain}</p>
+              </div>
+              <div className="featured-item">
+                Surface water
+                <p>{planet.surface_water}</p>
+              </div>
             </div>
-            <div className="featured-item">
-              Diameter: 40
-              <p>details</p>
-            </div>
-          </div>
-          <p className="center">Population</p>
-          <p className="center text-big margin-0">200000</p>
-        </Card>
-        <Card></Card>
-        <Card></Card>
+            <p className="center">Population</p>
+            <p className="center text-big margin-0">{planet.population}</p>
+          </Card>
+        ))}
       </Grid>
+      {nextPlanets && <button>Next Planets</button>}
     </Container>
   );
 };
