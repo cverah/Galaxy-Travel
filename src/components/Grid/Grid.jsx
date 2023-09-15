@@ -1,6 +1,7 @@
 import PropTypes from "prop-types";
 import "./Grid.css";
 const Grid = ({ rows, columns, gap, children }) => {
+  console.log(typeof children);
   return (
     <div
       className="grid"
@@ -16,9 +17,9 @@ const Grid = ({ rows, columns, gap, children }) => {
 };
 
 Grid.propTypes = {
+  children: PropTypes.array,
   rows: PropTypes.string,
   columns: PropTypes.number,
   gap: PropTypes.string,
-  children: PropTypes.object,
 };
 export default Grid;
