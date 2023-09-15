@@ -1,4 +1,5 @@
 import Hero from "./components/Hero/Hero";
+import Hosts from "./components/Hosts/Hosts";
 import Planets from "./components/Planets/Planets";
 import SearchForm from "./components/SearchForm/SearchForm";
 
@@ -9,6 +10,7 @@ function App() {
         <SearchForm ca={"Look for the best space travels in the universe"} />
       </Hero>
       <Planets />
+      <Hosts />
     </>
   );
 }
