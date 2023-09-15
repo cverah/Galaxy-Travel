@@ -1,0 +1,8 @@
+/* Grid.css */
+.grid {
+  display: grid;
+  padding: 0;
+  margin: 0;
+  /* //dense para que se acomode segun al contenido */
+  grid-auto-flow: dense;
+}

@@ -1,4 +1,5 @@
 import Container from "./components/Container/Container";
+import Grid from "./components/Grid/Grid";
 import Hero from "./components/Hero/Hero";
 import SearchForm from "./components/SearchForm/SearchForm";
 
@@ -8,9 +9,9 @@ function App() {
       <Hero title={"Galaxy Travel"} alignTitle={"right"}>
         <SearchForm ca={"Look for the best space travels in the universe"} />
       </Hero>
-      <Container title={"Planet"}>sdsd</Container>
-      <Container title={"Hosts"}> este texto </Container>
-      <Container>hola</Container>
+      <Container title={"Planet"}>
+        <Grid columns={4} rows={"200px"} gap={"15px"}></Grid>
+      </Container>
     </>
   );
 }
