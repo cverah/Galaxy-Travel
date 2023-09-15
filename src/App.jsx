@@ -3,11 +3,12 @@ import Hero from "./components/Hero/Hero";
 import Hosts from "./components/Hosts/Hosts";
 import Planets from "./components/Planets/Planets";
 import SearchForm from "./components/SearchForm/SearchForm";
+import SearchResults from "./components/SearchResults/SearchResults";
 
 function App() {
   const [searchForm, setSearchForm] = useState([]);
   const [resultSearchs, setResultSearchs] = useState([]);
-  console.log(resultSearchs);
+
   return (
     <>
       <Hero title={"Galaxy Travel"} alignTitle={"right"}>
@@ -17,8 +18,14 @@ function App() {
           resultDataFilter={setResultSearchs}
         />
       </Hero>
-      <Planets onUpdatePlanets={setSearchForm} />
-      <Hosts />
+      {resultSearchs.length >= 1 ? (
+        <SearchResults dataFilter={resultSearchs} />
+      ) : (
+        <>
+          <Planets onUpdatePlanets={setSearchForm} />
+          <Hosts />
+        </>
+      )}
     </>
   );
 }

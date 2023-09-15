@@ -13,6 +13,10 @@ const SearchForm = ({ ca, data, resultDataFilter }) => {
 
   const submitForm = (e) => {
     e.preventDefault();
+    if (!name && !terrain && !climate) {
+      resultDataFilter([]);
+      return;
+    }
     // en string tambien existe le includes
     // "abcd".includes("c") => true
     const hasName =
