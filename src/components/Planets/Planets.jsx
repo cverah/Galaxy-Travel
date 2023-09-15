@@ -1,3 +1,4 @@
+import PropTypes from "prop-types";
 import { useEffect, useState } from "react";
 import Card from "../Card/Card";
 import Container from "../Container/Container";
@@ -7,7 +8,7 @@ import { formatNumber } from "../../utils/format_number";
 import "../Container/Button.css";
 import "../../utils/Util.css";
 
-const Planets = () => {
+const Planets = ({ onUpdatePlanets }) => {
   // variables de estado planets
   const [planets, setPlanets] = useState([]);
   //varaible de estado para el next
@@ -19,6 +20,7 @@ const Planets = () => {
     const fetchPlanets = async () => {
       const data = await getPlanets();
       setPlanets(data.results);
+      onUpdatePlanets(data.results);
       setNextPlanets(data.next);
       setPreviousPlanets(data.previous);
     };
@@ -29,6 +31,7 @@ const Planets = () => {
     e.preventDefault();
     const data = await getPlanets(nextPlanets);
     setPlanets(data.results);
+    onUpdatePlanets(data.results);
     setNextPlanets(data.next);
     setPreviousPlanets(data.previous);
   };
@@ -37,6 +40,7 @@ const Planets = () => {
     e.preventDefault();
     const data = await getPlanets(previousPlanets);
     setPlanets(data.results);
+    onUpdatePlanets(data.results);
     setNextPlanets(data.next);
     setPreviousPlanets(data.previous);
   };
@@ -94,6 +98,10 @@ const Planets = () => {
       </div>
     </Container>
   );
+};
+
+Planets.propTypes = {
+  onUpdatePlanets: PropTypes.func,
 };
 
 export default Planets;
