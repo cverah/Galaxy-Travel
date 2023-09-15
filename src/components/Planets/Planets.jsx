@@ -3,6 +3,7 @@ import Card from "../Card/Card";
 import Container from "../Container/Container";
 import Grid from "../Grid/Grid";
 import getPlanets from "../../services/planets-service";
+import { formatNumber } from "../../utils/format_number";
 
 const Planets = () => {
   // variables de estado planets
@@ -50,10 +51,16 @@ const Planets = () => {
               </div>
             </div>
             <p className="center">Population</p>
-            <p className="center text-big margin-0">{planet.population}</p>
+            <p className="center text-big margin-0">
+              {parseInt(planet.population) > 0
+                ? formatNumber(planet.population)
+                : planet.population}
+            </p>
           </Card>
         ))}
       </Grid>
+      <br />
+      <br />
       {nextPlanets && <button>Next Planets</button>}
     </Container>
   );
