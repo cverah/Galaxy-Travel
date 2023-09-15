@@ -14,5 +14,5 @@ export default Container;
 
 Container.propTypes = {
   title: PropTypes.string,
-  children: PropTypes.object,
+  children: PropTypes.array,
 };
