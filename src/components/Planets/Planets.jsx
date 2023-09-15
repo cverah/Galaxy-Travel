@@ -4,23 +4,42 @@ import Container from "../Container/Container";
 import Grid from "../Grid/Grid";
 import getPlanets from "../../services/planets-service";
 import { formatNumber } from "../../utils/format_number";
+import "../Container/Button.css";
+import "../../utils/Util.css";
 
 const Planets = () => {
   // variables de estado planets
   const [planets, setPlanets] = useState([]);
   //varaible de estado para el next
-
   const [nextPlanets, setNextPlanets] = useState("");
+  //varaible de estado para el previosu
+  const [previousPlanets, setPreviousPlanets] = useState("");
 
   useEffect(() => {
     const fetchPlanets = async () => {
       const data = await getPlanets();
       setPlanets(data.results);
       setNextPlanets(data.next);
+      setPreviousPlanets(data.previous);
     };
     fetchPlanets();
   }, []);
 
+  const submitNext = async (e) => {
+    e.preventDefault();
+    const data = await getPlanets(nextPlanets);
+    setPlanets(data.results);
+    setNextPlanets(data.next);
+    setPreviousPlanets(data.previous);
+  };
+
+  const submitPrevious = async (e) => {
+    e.preventDefault();
+    const data = await getPlanets(previousPlanets);
+    setPlanets(data.results);
+    setNextPlanets(data.next);
+    setPreviousPlanets(data.previous);
+  };
   return (
     <Container title={"Planets"}>
       <Grid columns={3} rows={"auto"} gap={"15px"}>
@@ -61,7 +80,18 @@ const Planets = () => {
       </Grid>
       <br />
       <br />
-      {nextPlanets && <button>Next Planets</button>}
+      <div className="flex justify-between aligns-center">
+        {nextPlanets && (
+          <button className="button" onClick={submitNext}>
+            Next Planets
+          </button>
+        )}
+        {previousPlanets && (
+          <button className="button" onClick={submitPrevious}>
+            Previous Planets
+          </button>
+        )}
+      </div>
     </Container>
   );
 };
