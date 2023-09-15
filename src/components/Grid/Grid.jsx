@@ -6,7 +6,7 @@ const Grid = ({ rows, columns, gap, children }) => {
       className="grid"
       style={{
         gap: gap,
-        gridTemplateColums: `repeat ${columns} 1fr`,
+        gridTemplateColumns: `repeat(${columns}, 1fr)`,
         gridAutoRows: rows,
       }}
     >
