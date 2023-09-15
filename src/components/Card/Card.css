@@ -2,28 +2,33 @@
   width: 100%;
   height: 100%;
   box-shadow: rgb(0 0 0 / 10%) 0px 2px 6px;
+  padding: 8px;
 }
 
-.card h2 {
+.card:hover {
+  border: 1px solid gray;
+}
+
+h2 {
   margin: 0;
   text-align: center;
 }
 
-.card .horizontal-group {
+.horizontal-group {
   display: flex;
   align-content: center;
   justify-content: space-between;
   padding: 0 1em;
 }
 
-.card .featured-group {
+.featured-group {
   display: flex;
   grid-gap: 5px;
   gap: 5px;
   justify-content: center;
 }
 
-.card .featured-item {
+.featured-item {
   background-color: #333;
   color: #999;
   padding: 1em;
@@ -39,13 +44,13 @@
 .featured-item p {
   color: white;
 }
-.card .center {
+.center {
   text-align: center;
 }
 
-.card .text-big {
+.text-big {
   font-size: 2em;
 }
-.card .margin-0 {
+.margin-0 {
   margin: 0;
 }

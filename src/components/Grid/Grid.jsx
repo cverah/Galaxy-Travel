@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import "./Grid.css";
 const Grid = ({ rows, columns, gap, children }) => {
-  console.log(typeof children);
   return (
     <div
       className="grid"
